@@ -18,5 +18,5 @@
 		sb.append("</script>");
 
 		return sb.toString();
-	}
+	} 
 %>
