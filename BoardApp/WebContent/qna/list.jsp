@@ -1,15 +1,16 @@
 <%@page import="java.util.List"%>
-<%@page import="board.model.QnA"%>
 <%@page import="board.model.QnADAO"%>
-
+<%@page import="board.model.QnA"%>
+<%@page import="board.model.Notice"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="board.model.NoticeDAO"%>
 <%@ page contentType="text/html;charset=utf-8"%>
 <%@ page import="db.DBManager"%>
 <%@ page import="java.sql.Connection"%>
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.ResultSet"%>
 <%
-	QnADAO qnaDAO= new QnADAO();
+	QnADAO qnaDAO = new QnADAO();// TODO Auto-generated catch block();
 	List<QnA> list = qnaDAO.selectAll();
 %>
 <!DOCTYPE html>
@@ -29,6 +30,12 @@ th, td {
 }
 tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+img{
+	box-sizing:border-box;
+}
+a{
+	text-decoration:none;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -55,22 +62,25 @@ $(function(){
 	<%for(int i=0;i<list.size();i++){%>
 	<%QnA qna=list.get(i); //각 칸에 들어간 vo 끄집어 내기%>
   <tr>
-    <td><%=qna.getQna_id() %></td>
+    <td>26</td>
     <td>
+    	<%if(qna.getDepth()>0){ //depth가 0보다 큰 경우 답변으로 판단하자 %>
+    		<img src="/images/reply.png" style="margin-left:<%=20*qna.getDepth()%>px">
+    	<%}%>
 		<a href="/qna/detail.jsp?qna_id=<%=qna.getQna_id()%>"><%=qna.getTitle()%></a>
 	</td>
     <td><%= qna.getWriter()%></td>
-	<td><%=qna.getRegdate()%></td>
+	<td><%=qna.getRegdate().substring(0,10)%></td>
 	<td><%=qna.getHit()%></td>
   </tr>
 	<%}%>
   <tr>
-	<td colspan="6" > 
+	<td colspan="5" > 
 		<button>글등록</button>
 	</td>
   </tr>
   <tr>
-	<td colspan="6" style="text-align:center"> 
+	<td colspan="5" style="text-align:center"> 
 		<%@ include file="/inc/footer.jsp"%>
 	</td>
   </tr>

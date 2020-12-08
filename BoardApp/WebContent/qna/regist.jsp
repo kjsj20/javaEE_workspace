@@ -15,7 +15,7 @@
 	
 	//VO에 낱개로 된 파라미터 데이터 채워넣기
 	QnA qna = new QnA();
-	qna.setWriter(writer);
+	qna.setWriter(writer); 
 	qna.setTitle(title);
 	qna.setContent(content);
 	QnADAO dao = new QnADAO();
