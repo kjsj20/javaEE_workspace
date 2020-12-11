@@ -1,7 +1,7 @@
 <%@page import="board.model.News"%>
 <%@page import="java.util.List"%>
 <%@page import="board.model.NewsDAO"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	NewsDAO dao = new NewsDAO();

@@ -1,7 +1,7 @@
 /*
- * DAO¶õ ?
- * - Data Access Object¸¦ ÀÇ¹ÌÇÏ´Â ¾îÇÃ¸®ÄÉÀÌ¼ÇÀÇ ¼³°è ºÐ¾ß ¿ë¾î
- * - Data Access¶õ µ¥ÀÌÅÍº£ÀÌ½º¿ÍÀÇ CRUDÀÛ¾÷À» Àü´ãÇÑ´Ù´Â ÀÇ¹Ì
+ * DAOï¿½ï¿½ ?
+ * - Data Access Objectï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾ï¿½ ï¿½ï¿½ï¿½
+ * - Data Accessï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ï¿½ï¿½ CRUDï¿½Û¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù´ï¿½ ï¿½Ç¹ï¿½
  * */
 package board.model;
 
@@ -41,7 +41,7 @@ public class NoticeDAO {
 		return result;
 	}
 	
-	//¸ðµç ·¹ÄÚµå °¡Á®¿À±â !!
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ !!
 	public ArrayList<Notice> selectAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -54,7 +54,7 @@ public class NoticeDAO {
 			rs= pstmt.executeQuery();
 			while(rs.next()) {
 				Notice notice = new Notice();
-				notice = new Notice();//ÅÖºó empty»óÅÂÀÇ vo »ý¼º
+				notice = new Notice();//ï¿½Öºï¿½ emptyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vo ï¿½ï¿½ï¿½ï¿½
 				notice.setNotice_id(rs.getInt("notice_id"));
 				notice.setAuthor(rs.getString("author"));
 				notice.setTitle(rs.getString("title"));
@@ -71,12 +71,12 @@ public class NoticeDAO {
 		return list;
 	}
 	
-	//°Ô½Ã¹° 1°Ç °¡Á®¿À±â(»ó¼¼º¸±â)
+	//ï¿½Ô½Ã¹ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ó¼¼ºï¿½ï¿½ï¿½)
 	public Notice select(int notice_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Notice notice=null; //rs´ë½Å µ¥ÀÌÅÍ 1°ÇÀ» ´ãÀ» °´Ã¼
+		Notice notice=null; //rsï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼
 		
 		String sql = "select * from notice where notice_id = ?";
 		
@@ -86,10 +86,10 @@ public class NoticeDAO {
 			pstmt.setInt(1, notice_id);
 			rs = pstmt.executeQuery();
 			
-			//Áö±Ý Åº»ýÇÑ rs´Â °ð Á×´Â´Ù.. µû¶ó¼­ rs¸¦ ´ëÃ¼ÇÒ °´Ã¼°¡ ÇÊ¿äÇÏ´Ù!!
-			//rs´Â ·¹ÄÚµå ÇÑ°ÇÀ» ´ã´Â °´Ã¼ÀÌ¹Ç·Î, ·¹ÄÚµå 1°ÇÀ» ´ã¾Æ Àü´Þ¿ëÀ¸·Î »ç¿ëµÇ´Â VO¸¦ ÀÌ¿ëÇÏÀÚ!!
+			//ï¿½ï¿½ï¿½ï¿½ Åºï¿½ï¿½ï¿½ï¿½ rsï¿½ï¿½ ï¿½ï¿½ ï¿½×´Â´ï¿½.. ï¿½ï¿½ï¿½ï¿½ rsï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Ï´ï¿½!!
+			//rsï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½Ì¹Ç·ï¿½, ï¿½ï¿½ï¿½Úµï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Þ¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ VOï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ï¿½ï¿½!!
 			if(rs.next()) {
-				notice = new Notice();//ÅÖºó empty»óÅÂÀÇ vo »ý¼º
+				notice = new Notice();//ï¿½Öºï¿½ emptyï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ vo ï¿½ï¿½ï¿½ï¿½
 				notice.setNotice_id(rs.getInt("notice_id"));
 				notice.setAuthor(rs.getString("author"));
 				notice.setTitle(rs.getString("title"));
@@ -97,7 +97,7 @@ public class NoticeDAO {
 				notice.setRegdate(rs.getString("regdate"));
 				notice.setHit(rs.getInt("hit"));
 			} else {
-				System.out.println("Á¶È¸ ¿À·ù");
+				System.out.println("ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½");
 			}
 			
 			sql = "update notice set hit = hit+1 where notice_id = ?";
@@ -113,7 +113,7 @@ public class NoticeDAO {
 		return notice;
 	}
 	
-	//°Ô½Ã¹° 1°Ç ¼öÁ¤
+	//ï¿½Ô½Ã¹ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public int update(Notice notice) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -140,7 +140,7 @@ public class NoticeDAO {
 		
 	}
 	
-	//°Ô½Ã¹° 1°Ç »èÁ¦
+	//ï¿½Ô½Ã¹ï¿½ 1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		public int delete(int notice_id) {
 			Connection con = null;
 			PreparedStatement pstmt = null;

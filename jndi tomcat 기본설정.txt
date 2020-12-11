@@ -1,0 +1,81 @@
+* 예제에 사용된 jdbc/mytc5의 mytc5 는 고객님 계정명과 같은 것으로 임의 변경하셔도 됩니다.
+
+ 
+
+[server.xml]
+tomcat/conf/server.xml에서 주석된 설정을 다음과 같이 변경합니다.
+
+<Resource name="jdbc/myoracle"
+			auth="Container"
+			type="javax.sql.DataSource"
+			driverClassName="oracle.jdbc.driver.OracleDriver"
+			url="jdbc:oracle:thin:@localhost:1521:ORCL"
+			username="lastuser"
+			password="lastuser"
+			maxActive="20"
+			maxIdle="10"
+			maxWait="3000"/>
+
+ 
+
+ 
+
+[web.xml]
+
+WEB-INF/web.xml에서 다음을 추가합니다.
+
+ 
+
+<resource-ref>
+		<res-ref-name>jdbc/myoracle</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+ 
+
+ 
+
+* Tomcat 호스팅의 tomcat 7 이용 시 추가사항
+
+[context.xml]
+
+tomcat/conf/context.xml에 <Context></Context> 사이에 다음을 추가합니다.
+
+ 
+
+<ResourceLink type="javax.sql.DataSource" name="jdbc/myoracle" global="jdbc/myoracle" />
+
+
+------------------------------------------------------------테스트
+[jdbctest.jsp]
+
+
+<html>
+<head>
+<%@ page errorPage="errorpg.jsp"
+import="java.sql.*,
+javax.sql.*,
+java.io.*,
+javax.naming.InitialContext,
+javax.naming.Context" %>
+</head>
+<body>
+<h1>JDBC JNDI Resource Test</h1>
+
+<%
+InitialContext initCtx = new InitialContext();
+DataSource ds = (DataSource) initCtx.lookup("java:comp/env/jdbc/mytc5");
+Connection conn = ds.getConnection();
+Statement stmt = conn.createStatement();
+ResultSet rset = stmt.executeQuery("select version();");
+while (rset.next()) {
+out.println("mysql version=="+rset.getString("version()"));
+}
+rset.close();
+stmt.close();
+conn.close();
+initCtx.close();
+%>
+</body>
+</html>
