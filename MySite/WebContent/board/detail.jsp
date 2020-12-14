@@ -1,4 +1,12 @@
+<%@page import="board.model.Board"%>
+<%@page import="board.model.BoardDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%
+	request.setCharacterEncoding("utf-8");
+	String board_id = request.getParameter("board_id");
+	BoardDAO dao = new BoardDAO();
+	Board board = dao.select(Integer.parseInt(board_id));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,27 +64,38 @@ $(function(){
 	});
 });
 
-function regist(){
+function edit(){
 	$("form").attr({
 		enctype:"multipart/form-data",
 		method:"post",
-		action:"regist.jsp",
+		action:"edit.jsp"
 	});
 	$("form").submit();
 }
+
+function del(){
+	$("form").attr({
+		method:"post",
+		action:"del.jsp"
+	});
+	$("form").submit();
+}
+
 </script>
 </head>
 <body>
 
-<h3>게시판 글쓰기</h3>
+<h3>게시판 상세보기</h3>
 
 <div class="container">
   <form>
-    <input type="text" name="writer" placeholder="Your name...">
-
-    <input type="text" name="title" placeholder="title...">
+  	<input type="hidden" name="board_id" value="<%=board.getBoard_id() %>">
+  	<input type = "hidden" name ="filename" value = "<%=board.getFilename() %>">
+    <input type="text" name="writer" value="<%=board.getWriter()%>" >
+	
+    <input type="text" name="title" value="<%=board.getTitle() %>">
     
-    <textarea name="content" placeholder="Write something..." style="height:200px"></textarea>
+    <textarea name="content" style="height:200px"><%=board.getContent() %></textarea>
     
 	<input type = "file" name = "photo"><p>
 	

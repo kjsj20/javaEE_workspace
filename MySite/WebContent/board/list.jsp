@@ -1,3 +1,4 @@
+<%@page import="common.board.Pager"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="board.model.Board"%>
@@ -5,7 +6,9 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
 	BoardDAO dao = new BoardDAO();
+	Pager pager = new Pager();
 	List<Board> list =  dao.selectAll();
+	pager.init(request, list);
 %>
 <!DOCTYPE html>
 <html>
@@ -44,17 +47,18 @@ a{
 			<th>조회수</th>
 		</tr>
 		
-		
-		<%for(int i = 0; i < list.size(); i++){ %>
-		<%Board vo = new Board();%>
-		<%vo = list.get(i);%>
+		<%int num = pager.getNum(); %>
+		<%int curPos = pager.getCurPos();%>
+		<%for(int i = 0; i < pager.getPageSize(); i++){ %>
+		<%if(num<1)break; %>
+		<%Board board = list.get(curPos++);%>
 			<tr>
-				<td><%=vo.getBoard_id() %></td>
-				<td><img src ='/data/<%=vo.getFilename()%>' width = '100px'></td>
-				<td><a href = 'detail.jsp?board_id=<%=vo.getBoard_id()%>'><%=vo.getTitle() %></a></td>
-				<td><%=vo.getWriter() %></td>
-				<td><%=vo.getRegdate() %></td>
-				<td><%=vo.getHit() %></td>
+				<td><%=num--%></td>
+				<td><img src ='/data/<%=board.getFilename()%>' width = '100px'></td>
+				<td><a href = '/board/detail.jsp?board_id=<%=board.getBoard_id()%>'><%=board.getTitle() %></a></td>
+				<td><%=board.getWriter() %></td>
+				<td><%=board.getRegdate() %></td>
+				<td><%=board.getHit() %></td>
 			</tr>
 		<%} %>
 		

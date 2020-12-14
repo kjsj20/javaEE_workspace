@@ -6,7 +6,7 @@
 <%@page import="java.io.File"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
-<%@ page contentType="text/html;charset=utf-8"%>
+<%@ page contentType="text/html;charset=utf-8"%> 
 <%@ include file="/inc/lib.jsp" %>
 <%!
 	String saveDir="D:/javaee_workspace/BoardApp/WebContent/data";
