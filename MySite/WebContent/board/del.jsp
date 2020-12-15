@@ -1,12 +1,12 @@
+<%@page import="board.model.MybatisBoardDAO"%>
 <%@page import="common.file.FileManager"%>
-<%@page import="board.model.BoardDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ include file = "/inc/lib.jsp"%>
 <%
 	request.setCharacterEncoding("utf-8");
 	String board_id = request.getParameter("board_id");
 	String filename = request.getParameter("filename");
-	BoardDAO dao = new BoardDAO();
+	MybatisBoardDAO dao = new MybatisBoardDAO();
 	String path = application.getRealPath("/data");
 	
 	if(FileManager.deleteFile(path + "/" + filename)){
