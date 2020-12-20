@@ -28,4 +28,9 @@ public class TestController implements Controller{
 		return "/view/test/result";
 	}
 
+	@Override
+	public boolean isForward() {
+		return false;
+	}
+
 }

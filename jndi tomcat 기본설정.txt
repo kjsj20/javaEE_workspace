@@ -17,7 +17,7 @@ tomcat/conf/server.xml에서 주석된 설정을 다음과 같이 변경합니�
 			maxWait="3000"/>
 
 ---------------------------------------------------------------mariaDB
-<Resource name = "jdbc/mariaDB" auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/mariaDB" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/db1216" username="root"/>
+<Resource auth="Container" driverClassName="org.mariadb.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="3000" name="jdbc/myMariaDB" password="1234" type="javax.sql.DataSource" url="jdbc:mariadb://localhost:3306/db1216" username="root"/>
  
 
  

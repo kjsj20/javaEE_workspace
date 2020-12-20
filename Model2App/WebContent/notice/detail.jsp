@@ -63,9 +63,8 @@ $(function(){
 function edit(){
 	if(confirm("수정하시겠어요?")){
 		$("form").attr({
-			
 				method:"post",
-				action:"/board/edit"		
+				action:"/notice/edit.do"		
 		});
 		$("form").submit();
 	}
@@ -73,32 +72,27 @@ function edit(){
 
 function del(){
 	if(confirm("삭제하시겠어요?")){
-		location.href = "/board/delete?notice_id=<%=notice.getNotice_id()%>";		
+		location.href = "/notice/delete.do?notice_id=<%=notice.getNotice_id()%>";		
 	}
 }
 
 </script>
 </head>
 <body>
-
-<h3>게시판 상세보기</h3>
-
-<div class="container">
-  <form>
-  	<input type="hidden" name="notice_id" value="<%=notice.getNotice_id()%>">
-    <input type="text" name="writer" value="<%=notice.getWriter()%>" >
-	
-    <input type="text" name="title" value="<%=notice.getTitle() %>">
-    
-    <textarea name="content" style="height:200px"><%=notice.getContent() %></textarea>
-   	
-    <input type="button" value="목록보기" onClick="location.href='/notice/list.do'">
-    <input type="button" value="수정하기">
-    <input type="button" value="삭제하기">
-    
-    
-  </form>
-</div>
-
+	<h3>게시판 상세보기</h3>
+	<div class="container">
+	  <form>
+	  	<input type="hidden" name="notice_id" value="<%=notice.getNotice_id()%>">
+	    <input type="text" name="writer" value="<%=notice.getWriter()%>" >
+		
+	    <input type="text" name="title" value="<%=notice.getTitle() %>">
+	    
+	    <textarea name="content" style="height:200px"><%=notice.getContent() %></textarea>
+	   	
+	    <input type="button" value="목록보기" onClick="location.href='/notice/list.do'">
+	    <input type="button" value="수정하기">
+	    <input type="button" value="삭제하기">
+	  </form>
+	</div>
 </body>
 </html>
