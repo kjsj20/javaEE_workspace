@@ -1,4 +1,4 @@
-package com.model2.notice.controller;
+package com.model2.board.controller;
 
 import java.io.IOException;
 
@@ -7,38 +7,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model2.controller.Controller;
-import com.model2.domain.Notice;
-import com.model2.model.NoticeDAO;
+import com.model2.domain.Board;
+import com.model2.model.BoardDAO;
 
 public class EditController implements Controller{
-	NoticeDAO noticeDAO = new NoticeDAO();
-	int result = 0;
-	
+	BoardDAO boardDAO = new BoardDAO();
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Notice notice = new Notice();
+		String board_id = req.getParameter("board_id");
 		String title = req.getParameter("title");
 		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
-		int notice_id = Integer.parseInt(req.getParameter("notice_id"));
 		
-		notice.setTitle(title);
-		notice.setWriter(writer);
-		notice.setContent(content);
-		notice.setNotice_id(notice_id);
+		Board board = new Board();
+		board.setBoard_id(Integer.parseInt(board_id));
+		board.setTitle(title);
+		board.setWriter(writer);
+		board.setContent(content);
 		
-		result = noticeDAO.update(notice);
+		//3단계 : 수정 처리 
+		int result = boardDAO.update(board);
+		
+		req.setAttribute("result", result);
+		req.setAttribute("board", board);
 	}
 
 	public String getResultView() {
-		if(result == 0) {
-			return "/view/error/delErr";
-		} else {
-			return "/view/notice/edit";
-		}
+		return "/view/board/edit";
 	}
 
 	public boolean isForward() {
 		return true;
 	}
+	
 
 }

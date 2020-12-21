@@ -1,4 +1,4 @@
-package com.model2.notice.controller;
+package com.model2.board.controller;
 
 import java.io.IOException;
 
@@ -7,34 +7,31 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.model2.controller.Controller;
-import com.model2.domain.Notice;
-import com.model2.model.NoticeDAO;
+import com.model2.domain.Board;
+import com.model2.model.BoardDAO;
 
 public class RegistController implements Controller{
-	NoticeDAO noticeDAO = new NoticeDAO();
-	@Override
+	BoardDAO boardDAO = new BoardDAO();
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//3단계 : 알맞는 로직 객체에게 일시킨다.
-		//파라미터 vo에 담기
-		Notice notice = new Notice();
 		String title = req.getParameter("title");
 		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
-		notice.setTitle(title);
-		notice.setWriter(writer);
-		notice.setContent(content);
+		Board board = new Board();
+		int result = 0; 
+		board.setTitle(title);
+		board.setWriter(writer);
+		board.setContent(content);
+		result = boardDAO.insert(board);
 		
-		int result = noticeDAO.insert(notice);
+		//4단계 : 저장할것이 없다..
 	}
 
-	@Override
 	public String getResultView() {
-		return "/view/notice/regist";
+		return "/view/board/regist";
 	}
 
-	@Override
 	public boolean isForward() {
 		return false;
 	}
-
+	
 }
