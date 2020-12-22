@@ -16,6 +16,9 @@
 				<prop key="/hello">testController</prop>
 				<prop key="/board/list">listController</prop>
 				<prop key="/board/regist">registController</prop>
+				<prop key="/board/detail">detailController</prop>
+				<prop key="/board/edit">editController</prop>
+				<prop key="/board/delete">deleteController</prop>
 			</props>
 		</property>
 	</bean>
@@ -23,6 +26,9 @@
 	<bean id = "testController" class="com.springmvc.test.controller.TestController"></bean>
 	<bean id = "listController" class="com.springmvc.board.controller.ListController"></bean>
 	<bean id = "registController" class="com.springmvc.board.controller.RegistController"></bean>
+	<bean id = "detailController" class="com.springmvc.board.controller.DetailController"></bean>
+	<bean id = "editController" class="com.springmvc.board.controller.EditController"></bean>
+	<bean id = "deleteController" class="com.springmvc.board.controller.DeleteController"></bean>
 	
 	<!-- 뷰 매핑 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

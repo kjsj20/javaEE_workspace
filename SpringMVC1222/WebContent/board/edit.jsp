@@ -10,7 +10,7 @@
 		sb.append("history.back();");
 	} else {
 		sb.append("alert('수정성공');");
-		sb.append("location.href='/board/detail.do?board_id="+board.getBoard_id()+"'");
+		sb.append("location.href='/board/detail?board_id="+board.getBoard_id()+"'");
 	}
 	sb.append("</script>");
 	

@@ -59,13 +59,25 @@ input[type=button]:hover {
 		 $($("input[type='button']")[0]).click(function(){
 			edit(); //동기방식으로 요청하겠다
 		 });
+		 
+		 $($("input[type='button']")[1]).click(function(){
+			del(); 
+		 });
 		 getCommentList();//댓글 목록 비동기로 가져오기!!
 	});
 	
 	function edit(){
 		$("form").attr({
-			action:"/board/edit.do",
+			action:"/board/edit",
 			method:"post"
+		});
+		$("form").submit();
+	}
+	
+	function del(){
+		$("form").attr({
+			method:"post",
+			action:"/board/delete"
 		});
 		$("form").submit();
 	}
